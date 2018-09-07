@@ -1,46 +1,40 @@
 package com.game.sic.somedata
 
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModel
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.Fragment
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.delay
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 import ru.terrakok.cicerone.Router
 
 
 class MainViewModel : ViewModel() {
 
-    private var router: Router = ThisApplication.INSTANCE.router()
+    private val router: Router = ThisApplication.INSTANCE.cicerone.router
 
-    val adapter = MainAdapter<Post, MainViewModel>(this)
+    private val service: RestService = ThisApplication.INSTANCE.service
+
+    private val dao: PostDao = ThisApplication.INSTANCE.database.postDaoDao()
+
+    val adapter = MainAdapter<Post, MainViewModel>(R.layout.list_item_main, this)
+
     var progress: MutableLiveData<Boolean> = MutableLiveData()
-
-    private val service: RestService
 
     private var job: Deferred<Unit>? = null
 
-    init {
-        val retrofit = Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
-                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
+    private val observer: Observer<List<Post>> = Observer { adapter.set(it) }
 
-        service = retrofit.create<RestService>(RestService::class.java)
+    init {
+        dao.all().observeForever(observer)
     }
 
     fun update() {
         job = async(UI) {
             try {
                 progress.value = true
-                adapter.set(service.posts().await())
+                val posts = service.posts().await()
+                async { dao.insert(posts) }.await()
             } catch (e: Exception) {
                 e.printStackTrace()
             } finally {
@@ -55,6 +49,8 @@ class MainViewModel : ViewModel() {
     }
 
     override fun onCleared() {
+        dao.all().removeObserver(observer)
         job?.cancel(Exception("MainViewModel cleared"))
     }
+
 }

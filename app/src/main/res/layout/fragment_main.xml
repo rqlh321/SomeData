@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <variable
             name="viewmodel"
             type="com.game.sic.somedata.MainViewModel" />
@@ -15,16 +17,16 @@
         android:layout_height="match_parent">
 
         <Button
+            android:visibility="@{viewmodel.progress ? View.GONE : View.VISIBLE}"
             android:id="@+id/update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{()->viewmodel.update()}" />
 
         <ProgressBar
-            android:id="@+id/progress"
+            android:visibility="@{viewmodel.progress ? View.VISIBLE : View.GONE}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

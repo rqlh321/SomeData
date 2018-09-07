@@ -1,8 +1,12 @@
 package com.game.sic.somedata
 
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
+
+@Entity
 data class Post(
-          val userId: Int = -1
-        , val id: Int = -1
-        , val title: String = ""
-        , val body: String = ""
+          var userId: Int = -1
+        , @PrimaryKey var id: Long = -1
+        , var title: String = ""
+        , var body: String = ""
 )

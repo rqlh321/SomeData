@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 
-class MainAdapter<Item, ViewModel>(private val viewModel: ViewModel?) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter<Item, ViewModel>(private val layout: Int, private val viewModel: ViewModel?) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     private val messages: ArrayList<Item> = ArrayList()
 
@@ -29,7 +29,7 @@ class MainAdapter<Item, ViewModel>(private val viewModel: ViewModel?) : Recycler
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapter.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.list_item_main, parent, false)
+        val view = inflater.inflate(layout, parent, false)
         return MainAdapter.ViewHolder(view)
     }
 
