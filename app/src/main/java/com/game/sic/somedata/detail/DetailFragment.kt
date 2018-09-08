@@ -14,7 +14,7 @@ class DetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentDetailBinding>(inflater, R.layout.fragment_detail, container, false)
-        val viewModelFactory = DetailViewModelFactory(arguments?.getLong(POST_ID))
+        val viewModelFactory = DetailViewModelFactory(arguments!!.getLong(POST_ID))
         val viewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailViewModel::class.java)
         binding.viewmodel = viewModel
         binding.setLifecycleOwner(this)
