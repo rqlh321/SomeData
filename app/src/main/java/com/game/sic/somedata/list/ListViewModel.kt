@@ -46,7 +46,7 @@ class ListViewModel : ViewModel() {
     }
 
     fun click(item: Post) {
-        router.newScreenChain(ThisApplication.Screens.ABOUT, item)
+        router.newScreenChain(ThisApplication.Screens.ABOUT, item.id)
     }
 
     override fun onCleared() {

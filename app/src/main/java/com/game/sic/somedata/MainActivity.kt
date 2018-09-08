@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AlertDialog
+import com.game.sic.somedata.detail.DetailFragment
 import com.game.sic.somedata.list.ListFragment
 import ru.terrakok.cicerone.android.SupportAppNavigator
 
@@ -17,7 +18,7 @@ class MainActivity : FragmentActivity() {
 
         override fun createFragment(screenKey: String, data: Any?): Fragment = when (screenKey) {
             ThisApplication.Screens.HOME -> ListFragment()
-            ThisApplication.Screens.ABOUT -> Fragment()
+            ThisApplication.Screens.ABOUT -> DetailFragment.instance((data as Long))
             else -> Fragment()
         }
 
