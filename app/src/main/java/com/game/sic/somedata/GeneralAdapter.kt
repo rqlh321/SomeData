@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 
-class MainAdapter<Item, ViewModel>(private val layout: Int, private val viewModel: ViewModel?) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class GeneralAdapter<Item, ViewModel>(private val layout: Int, private val viewModel: ViewModel?) : RecyclerView.Adapter<GeneralAdapter.ViewHolder>() {
 
     private val messages: ArrayList<Item> = ArrayList()
 
@@ -27,13 +27,13 @@ class MainAdapter<Item, ViewModel>(private val layout: Int, private val viewMode
         recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, LinearLayout.VERTICAL))
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GeneralAdapter.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(layout, parent, false)
-        return MainAdapter.ViewHolder(view)
+        return GeneralAdapter.ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: MainAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GeneralAdapter.ViewHolder, position: Int) {
         holder.viewDataBinding?.setVariable(BR.item, messages[position])
         holder.viewDataBinding?.setVariable(BR.viewmodel, viewModel)
     }

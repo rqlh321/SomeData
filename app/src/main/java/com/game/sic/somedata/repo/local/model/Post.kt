@@ -1,4 +1,4 @@
-package com.game.sic.somedata
+package com.game.sic.somedata.repo.local.model
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey

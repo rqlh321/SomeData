@@ -7,11 +7,11 @@
 
         <variable
             name="viewmodel"
-            type="com.game.sic.somedata.MainViewModel" />
+            type="com.game.sic.somedata.list.ListViewModel" />
 
         <variable
             name="item"
-            type="com.game.sic.somedata.Post" />
+            type="com.game.sic.somedata.repo.local.model.Post" />
     </data>
 
     <android.support.constraint.ConstraintLayout

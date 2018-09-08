@@ -1,7 +1,8 @@
-package com.game.sic.somedata
+package com.game.sic.somedata.repo.local.dao
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
+import com.game.sic.somedata.repo.local.model.Post
 
 @Dao
 interface PostDao {

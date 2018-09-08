@@ -9,7 +9,7 @@
 
         <variable
             name="viewmodel"
-            type="com.game.sic.somedata.MainViewModel" />
+            type="com.game.sic.somedata.list.ListViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout

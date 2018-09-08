@@ -1,14 +1,12 @@
 package com.game.sic.somedata
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AlertDialog
-import android.view.View
-import ru.terrakok.cicerone.Router
+import com.game.sic.somedata.list.ListFragment
 import ru.terrakok.cicerone.android.SupportAppNavigator
 
 class MainActivity : FragmentActivity() {
@@ -18,8 +16,8 @@ class MainActivity : FragmentActivity() {
         override fun createActivityIntent(context: Context, screenKey: String, data: Any?): Intent? = null
 
         override fun createFragment(screenKey: String, data: Any?): Fragment = when (screenKey) {
-            Screens.HOME -> MainFragment()
-            Screens.ABOUT -> Fragment()
+            ThisApplication.Screens.HOME -> ListFragment()
+            ThisApplication.Screens.ABOUT -> Fragment()
             else -> Fragment()
         }
 
@@ -36,7 +34,7 @@ class MainActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
-            ThisApplication.INSTANCE.cicerone.router.newRootScreen(Screens.HOME)
+            ThisApplication.INSTANCE.cicerone.router.newRootScreen(ThisApplication.Screens.HOME)
         }
     }
 
