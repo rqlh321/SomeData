@@ -15,14 +15,14 @@ class ExampleInstrumentedTest {
     fun createDb() {
         val context = InstrumentationRegistry.getTargetContext()
         Repo.setup(context)
-        Repo.database.postDao().all().observeForever { println(it.toString()) }
+        Repo.postDao.all().observeForever { println(it.toString()) }
     }
 
     @Test
     fun useAppContext() {
         runBlocking {
             val posts = Repo.service.posts().await()
-            Repo.database.postDao().insert(posts)
+            Repo.postDao.insert(posts)
         }
     }
 

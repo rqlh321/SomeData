@@ -7,6 +7,6 @@ import com.game.sic.somedata.repo.local.model.Post
 
 class DetailViewModel(id: Long) : ViewModel() {
 
-    var post: LiveData<Post> = Repo.database.postDao().get(id)
+    var post: LiveData<Post> = Repo.postDao.get(id)
 
 }

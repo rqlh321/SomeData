@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">SomeData</string>
     <string name="ok">Хорошо</string>
+    <string name="post_id">Post ID:</string>
+    <string name="title">Title:</string>
+    <string name="user_id">User ID:</string>
 </resources>

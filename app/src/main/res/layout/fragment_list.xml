@@ -1,46 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/tools">
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="viewmodel"
             type="com.game.sic.somedata.list.ListViewModel" />
+
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:visibility="@{viewmodel.progress ? View.GONE : View.VISIBLE}"
-            android:id="@+id/update"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{()->viewmodel.update()}" />
+            android:text="@{viewmodel.error}"
+            android:visibility="@{viewmodel.error.isEmpty() ? View.GONE : View.VISIBLE}" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->viewmodel.update()}"
+            android:visibility="@{viewmodel.progress ? View.GONE : View.VISIBLE}" />
 
         <ProgressBar
-            android:visibility="@{viewmodel.progress ? View.VISIBLE : View.GONE}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:visibility="@{viewmodel.progress ? View.VISIBLE : View.GONE}" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/list"
-            bind:adapter="@{viewmodel.adapter}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            bind:adapter="@{viewmodel.adapter}" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>
