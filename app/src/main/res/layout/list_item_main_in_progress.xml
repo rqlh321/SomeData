@@ -27,7 +27,7 @@
             android:orientation="vertical">
 
             <include
-                layout="@layout/include_list_item_main_general"
+                layout="@layout/list_item_main_include_general"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
