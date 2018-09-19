@@ -4,4 +4,5 @@
     <string name="post_id">Post ID:</string>
     <string name="title">Title:</string>
     <string name="user_id">User ID:</string>
+    <string name="default_list_item_message">XML res does not defined for this item</string>
 </resources>

@@ -14,7 +14,7 @@ import ru.terrakok.cicerone.Router
 
 class ListViewModel : ViewModel() {
 
-    val adapter = GeneralAdapter(Repo.postDao.all(), R.layout.list_item_main, this)
+    val adapter = GeneralAdapter(Repo.postDao.all(), this)
 
     var progress: MutableLiveData<Boolean> = MutableLiveData()
 
