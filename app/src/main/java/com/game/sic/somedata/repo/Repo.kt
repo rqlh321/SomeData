@@ -36,7 +36,7 @@ object Repo {
     }
 
     suspend fun download() {
-        val posts = Repo.service.posts().await()
+        val posts = Repo.service.posts().await().subList(0,1)
         async { Repo.postDao.insert(posts) }.await()
     }
 

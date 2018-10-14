@@ -1,27 +1,23 @@
 package com.game.sic.somedata
 
 import android.app.Application
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.game.sic.somedata.repo.Repo
-import ru.terrakok.cicerone.Cicerone
-import ru.terrakok.cicerone.Router
+import com.game.sic.somedata.side.CompressWorker
+import java.util.concurrent.TimeUnit
 
 class ThisApplication : Application() {
-
-    object Screens {
-        const val HOME = "home"
-        const val ABOUT = "about"
-    }
-
-    lateinit var cicerone: Cicerone<Router>
-        private set
 
     override fun onCreate() {
         super.onCreate()
         INSTANCE = this
 
         Repo.setup(this)
-        cicerone = Cicerone.create()
 
+        val compressionWork = PeriodicWorkRequestBuilder<CompressWorker>(500L,TimeUnit.MILLISECONDS)
+                .build()
+        WorkManager.getInstance().enqueue(compressionWork)
     }
 
     companion object {

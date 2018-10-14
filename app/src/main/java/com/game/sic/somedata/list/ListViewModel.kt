@@ -2,15 +2,17 @@ package com.game.sic.somedata.list
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.os.Bundle
+import android.view.View
+import androidx.navigation.Navigation.findNavController
 import com.game.sic.somedata.GeneralAdapter
 import com.game.sic.somedata.R
-import com.game.sic.somedata.ThisApplication
+import com.game.sic.somedata.detail.DetailFragment
 import com.game.sic.somedata.repo.Repo
 import com.game.sic.somedata.repo.local.model.Post
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
-import ru.terrakok.cicerone.Router
 
 class ListViewModel : ViewModel() {
 
@@ -19,8 +21,6 @@ class ListViewModel : ViewModel() {
     var progress: MutableLiveData<Boolean> = MutableLiveData()
 
     var error: MutableLiveData<String> = MutableLiveData()
-
-    private val router: Router = ThisApplication.INSTANCE.cicerone.router
 
     private var job: Deferred<Unit>? = null
 
@@ -39,8 +39,12 @@ class ListViewModel : ViewModel() {
         }
     }
 
-    fun click(item: Post) {
-        router.newScreenChain(ThisApplication.Screens.ABOUT, item.id)
+    fun click(view: View, item: Post) {
+        val bundle = Bundle().apply {
+            putLong(DetailFragment.POST_ID, item.id)
+        }
+        findNavController(view).navigate(R.id.action_listFragment_to_detailFragment, bundle)
+
     }
 
     override fun onCleared() {

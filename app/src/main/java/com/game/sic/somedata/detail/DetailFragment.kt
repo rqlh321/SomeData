@@ -23,13 +23,7 @@ class DetailFragment : Fragment() {
 
     companion object {
 
-        const val POST_ID = "POST_ID"
-
-        fun instance(id: Long): Fragment {
-            return DetailFragment().apply {
-                arguments = Bundle().apply { putLong(POST_ID, id) }
-            }
-        }
+        const val POST_ID = "post_id"
 
     }
 }

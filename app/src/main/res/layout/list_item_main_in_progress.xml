@@ -15,9 +15,10 @@
     </data>
 
     <android.support.v7.widget.CardView
+        android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:onClick="@{()->viewmodel.click(item)}"
+        android:onClick="@{()->viewmodel.click(root, item)}"
         app:cardBackgroundColor="@android:color/holo_blue_light">
 
 
